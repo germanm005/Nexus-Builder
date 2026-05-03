@@ -1,0 +1,208 @@
+.canvas-wrapper {
+  position: relative;
+  background: var(--bg-canvas);
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.canvas-ruler {
+  position: absolute;
+  background: var(--bg-secondary);
+  z-index: 10;
+
+  &--top {
+    top: 0;
+    left: 40px;
+    right: 0;
+    height: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  &--left {
+    left: 0;
+    top: 40px;
+    bottom: 0;
+    width: 20px;
+    border-right: 1px solid var(--border);
+  }
+}
+
+.canvas {
+  position: relative;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition:
+    width var(--transition-base),
+    height var(--transition-base);
+  min-height: 600px;
+
+  &[data-breakpoint="desktop"] {
+    width: 100%;
+    max-width: 1200px;
+    height: 800px;
+  }
+
+  &[data-breakpoint="tablet"] {
+    width: 768px;
+    height: 1024px;
+  }
+
+  &[data-breakpoint="mobile"] {
+    width: 375px;
+    height: 812px;
+  }
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  &__guides {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    .guide {
+      position: absolute;
+      background: var(--accent);
+      opacity: 0.6;
+
+      &--h {
+        left: 0;
+        right: 0;
+        height: 1px;
+      }
+
+      &--v {
+        top: 0;
+        bottom: 0;
+        width: 1px;
+      }
+    }
+  }
+}
+
+// Canvas Elements
+.canvas-element {
+  position: absolute;
+  cursor: move;
+  user-select: none;
+  border: 2px solid transparent;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  &:hover {
+    border-color: var(--accent);
+  }
+
+  &.selected {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--selection);
+    z-index: 100;
+  }
+
+  // Resize handles
+  .resize-handle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border: 1px solid var(--bg-primary);
+    border-radius: 50%;
+    display: none;
+    z-index: 101;
+  }
+
+  &.selected .resize-handle {
+    display: block;
+  }
+
+  .resize-handle {
+    &.nw {
+      top: -4px;
+      left: -4px;
+      cursor: nw-resize;
+    }
+  }
+  .resize-handle {
+    &.ne {
+      top: -4px;
+      right: -4px;
+      cursor: ne-resize;
+    }
+  }
+  .resize-handle {
+    &.sw {
+      bottom: -4px;
+      left: -4px;
+      cursor: sw-resize;
+    }
+  }
+  .resize-handle {
+    &.se {
+      bottom: -4px;
+      right: -4px;
+      cursor: se-resize;
+    }
+  }
+}
+
+// Component styles inside canvas
+.el-button {
+  padding: 10px 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.el-card {
+  padding: var(--space-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-width: 200px;
+  min-height: 120px;
+}
+
+.el-input {
+  padding: 10px 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: inherit;
+  min-width: 200px;
+}
+
+.el-text {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  min-width: 100px;
+}
+
+.el-image {
+  width: 200px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 12px;
+}

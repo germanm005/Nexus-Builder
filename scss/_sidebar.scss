@@ -1,0 +1,37 @@
+.component-lib {
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.component-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 8px;
+  cursor: grab;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+
+  &:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &__icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+  }
+
+  span:last-child {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+}

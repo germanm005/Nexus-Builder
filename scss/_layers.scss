@@ -1,0 +1,45 @@
+.layers {
+  padding: var(--space-sm);
+
+  .layer-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--bg-tertiary);
+    }
+
+    &.active {
+      background: var(--selection);
+      color: var(--accent);
+    }
+
+    &__icon {
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    &__name {
+      flex: 1;
+    }
+
+    &__visibility {
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    &:hover &__visibility {
+      opacity: 1;
+    }
+  }
+
+  .layer-indent {
+    padding-left: var(--space-xl);
+  }
+}
